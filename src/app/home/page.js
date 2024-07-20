@@ -13,7 +13,9 @@ const Page = () => {
       try {
         const res = await fetch('/api/auth/session');
         const data = await res.json();
-        if (!data || !data.user) {
+        console.log('this is data ===>>>>', data)
+
+        if (!data) {
           router.push('/');
         } else {
           setSession(data);
@@ -29,19 +31,34 @@ const Page = () => {
   if (!session) {
     return <div>Loading...</div>;
   }
-  const img=session.user.image;
+  const newSecc = session.user;
+  const imgSrc = session.image ? session.image : session.user.image;
+  console.log('this is image===>>>', newSecc)
   return (
     <>
-    <Navbar session={session}/>
-      <div>THIS IS THE HOME PAGE {session.user.username} signed in 
-       
-        <Image 
-        src={img} 
-        width={250} 
-        height={250} 
-        alt='display photo' 
-      /></div>
-      
+      {session.user ?
+        (<>
+          <Navbar session={newSecc} />
+          <div>THIS IS THE HOME PAGE {session.name} signed in
+            <Image
+              src={imgSrc}
+              width={250}
+              height={250}
+              alt='display photo'
+            />FIRST
+          </div>
+        </>)
+        :
+        (<>
+          <Navbar session={session} />
+          <div>THIS IS THE HOME PAGE {session.name} signed in
+            <Image
+              src={imgSrc}
+              width={250}
+              height={250}
+              alt='display photo'
+            />SECOND</div>
+        </>)}
     </>
   );
 };
