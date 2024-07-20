@@ -1,8 +1,10 @@
-import React from 'react'
+'use client'
+import React, {useState} from 'react'
 import Image from 'next/image'
-import Link from 'next/link'
-
+import Link from 'next/link';
+import Logout from '../Logout/page';
 const Navbar = ({ session }) => {
+  const [profileMenu, setprofileMenu] =useState(false);
   return (
     <>
       <nav className="bg-gray-800">
@@ -48,7 +50,7 @@ const Navbar = ({ session }) => {
               {/* Profile dropdown */}
               <div className="relative ml-3">
                 <div>
-                  <button type="button" className="relative flex rounded-full bg-gray-800 text-sm focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-gray-800" id="user-menu-button" aria-expanded="false" aria-haspopup="true">
+                  <button onClick={()=>setprofileMenu(!profileMenu)} type="button" className="relative flex rounded-full bg-gray-800 text-sm focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-gray-800" id="user-menu-button" aria-expanded="false" aria-haspopup="true">
                     <span className="absolute -inset-1.5"></span>
                     <span className="sr-only">Open user menu</span>
                     {session && (
@@ -62,11 +64,11 @@ const Navbar = ({ session }) => {
                     )}
                   </button>
                 </div>
-                <div className="absolute right-0 z-10 mt-2 w-48 origin-top-right rounded-md bg-white py-1 shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none" role="menu" aria-orientation="vertical" aria-labelledby="user-menu-button" tabIndex="-1">
+                {profileMenu && <div className="absolute right-0 z-10 mt-2 w-48 origin-top-right rounded-md bg-white py-1 shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none" role="menu" aria-orientation="vertical" aria-labelledby="user-menu-button" tabIndex="-1">
                   <Link href="#" className="block px-4 py-2 text-sm text-gray-700" role="menuitem" tabIndex="-1" id="user-menu-item-0">Your Profile</Link>
                   <Link href="#" className="block px-4 py-2 text-sm text-gray-700" role="menuitem" tabIndex="-1" id="user-menu-item-1">Settings</Link>
-                  <Link href="#" className="block px-4 py-2 text-sm text-gray-700" role="menuitem" tabIndex="-1" id="user-menu-item-2">Sign out</Link>
-                </div>
+                  <Logout/>
+                </div>}
               </div>
             </div>
           </div>

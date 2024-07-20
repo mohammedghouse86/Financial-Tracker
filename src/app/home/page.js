@@ -1,7 +1,6 @@
 'use client'
 import React, { useEffect, useState } from 'react';
 import { useRouter } from 'next/navigation';
-import Logout from '../Logout/page';
 import Image from 'next/image';
 import Navbar from '../components/Navbar';
 
@@ -42,7 +41,7 @@ const Page = () => {
         height={250} 
         alt='display photo' 
       /></div>
-      <Logout/>
+      
     </>
   );
 };
