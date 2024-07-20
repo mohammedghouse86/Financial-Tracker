@@ -2,6 +2,8 @@
 import React, { useEffect, useState } from 'react';
 import { useRouter } from 'next/navigation';
 import Logout from '../Logout/page';
+import Image from 'next/image';
+import Navbar from '../components/Navbar';
 
 const Page = () => {
   const [session, setSession] = useState(null);
@@ -28,10 +30,18 @@ const Page = () => {
   if (!session) {
     return <div>Loading...</div>;
   }
-
+  const img=session.user.image;
   return (
     <>
-      <div>THIS IS THE HOME PAGE {session.user.email} signed in</div>
+    <Navbar session={session}/>
+      <div>THIS IS THE HOME PAGE {session.user.username} signed in 
+       
+        <Image 
+        src={img} 
+        width={250} 
+        height={250} 
+        alt='display photo' 
+      /></div>
       <Logout/>
     </>
   );

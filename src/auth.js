@@ -5,16 +5,14 @@ import { connectToDB } from './utils/database';
 import User from './app/models/user';
 import CredentialsProvider from 'next-auth/providers/credentials';
 import bcrypt from 'bcryptjs';
-
+import {authConfig} from './auth.config';
 export const {
   handlers: { GET, POST },
   auth,
   signIn,
   signOut,
 } = NextAuth({
-  session: {
-    strategy: 'jwt',
-  },
+  ...authConfig,
   providers: [
     GoogleProvider({
       clientId: process.env.GOOGLE_CLIENT_ID,
@@ -60,10 +58,10 @@ export const {
           console.log('Password matched');
 
           return {
-            id: user._id.toString(),
-            email: user.email,
+            //id: user._id.toString(),
+            //email: user.email,
             //username: user.username,
-            //user: user
+            user
           };
         }
         catch (error) {
@@ -75,16 +73,18 @@ export const {
   callbacks: {
     async jwt({ token, user }) {
       if (user) {
+        //console.log("User in JWT callback:", user);
         token.id = user.id;
-        token.username = user.username; // Add username to the token
-        token.one = user;
+        //token.username = user.username; // Add username to the token
+        token = user;
       }
       return token;
     },
     async session({ session, token }) {
-      session.user.id = token.id;
-      session.user.username = token.username; // Add username to the session
-      session.one = token.one;
+      //console.log("Session data:", session);
+      //session.user.id = token.id;
+      //session.user.username = token.username; // Add username to the session
+      session = token;
       //console.log('and',session.one);
       return session;
     },
