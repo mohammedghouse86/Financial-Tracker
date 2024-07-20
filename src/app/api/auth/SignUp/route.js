@@ -6,7 +6,7 @@ import { connectToDB } from '../../../../utils/database';
 const jwt_SECRET = "your_jwt_secret_key"; // Replace with your actual secret key
 
 export const POST = async (req, res) => {
-    const { email, username, image, password } = await req.json();
+    const { email, name, image, password } = await req.json();
 
     try {
         // Connect to database
@@ -28,7 +28,7 @@ export const POST = async (req, res) => {
         // Create the new user
         const newUser = await User.create({
             email,
-            username: username.replace(" ", "").toLowerCase(),
+            name: name.replace(" ", "").toLowerCase(),
             image,
             password: hashedPassword
         });

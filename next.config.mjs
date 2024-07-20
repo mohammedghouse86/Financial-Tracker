@@ -14,8 +14,14 @@ const nextConfig = {
         protocol: 'https',
         hostname: 'avatars.githubusercontent.com',
       },
+      {
+        protocol: 'https',
+        hostname: 'drive.google.com',
+      },
     ],
   },
 };
 
 export default nextConfig;
+
+

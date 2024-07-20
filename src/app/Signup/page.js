@@ -2,17 +2,17 @@
 import { useState } from 'react';
 
 const Signup = () => {
-    const [Credential, SetCredential] = useState({ email: "", username: "", image: "", password: "" });
+    const [Credential, SetCredential] = useState({ email: "", name: "", image: "", password: "" });
 
     const handleSubmit = async (event) => {
         event.preventDefault(); // Prevent page refresh
-        console.log('running handel submit')
+        console.log('running handel submit', Credential)
         const response = await fetch(`http://localhost:3000/api/auth/SignUp`, {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'
             },
-            body: JSON.stringify({ email: Credential.email, username: Credential.username, image: Credential.image, password: Credential.password })
+            body: JSON.stringify({ email: Credential.email, name: Credential.name, image: Credential.image, password: Credential.password })
         });
         const json = await response.json();
         console.log(json);
@@ -34,8 +34,8 @@ const Signup = () => {
                 <div>Email</div>
                     <input style={{ width: '180px' }} type="email" className="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" name="email" value={Credential.email} onChange={onChange} />
 
-                    <div>UserName</div>
-                    <input style={{ width: '180px' }} type="text" className="form-control" id="exampleInputusername1" aria-describedby="usernameHelp" name="username" value={Credential.username} onChange={onChange}  />
+                    <div>Name</div>
+                    <input style={{ width: '180px' }} type="text" className="form-control" id="exampleInputname1" aria-describedby="nameHelp" name="name" value={Credential.name} onChange={onChange}  />
 
                     <div>Image</div>
                     <input style={{ width: '180px' }} type="text" className="form-control" id="exampleInputimage1" aria-describedby="imageHelp" name="image" value={Credential.image} onChange={onChange}/>
