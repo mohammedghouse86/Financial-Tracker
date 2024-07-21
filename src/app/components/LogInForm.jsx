@@ -12,7 +12,7 @@ const LoginForm = () => {
         try {
             const formdata = new FormData(e.currentTarget);
             const response = doCredentialLogin(formdata);
-            console.log('this is response =', response)
+            //console.log('this is response =', response)
             if (!!response.error) {
 
             }

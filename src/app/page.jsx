@@ -9,7 +9,7 @@ const Home = () => {
       try {
         const res = await fetch('/api/auth/session');
         const data = await res.json();
-        console.log('this is data ===>>>>', data)
+        //console.log('this is data ===>>>>', data)
 
         if (data) {
           router.push('/home');
