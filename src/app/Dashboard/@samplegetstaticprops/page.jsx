@@ -3,7 +3,7 @@ import { staticprops } from '../../../utils/staticprops';
 
 const Page = async () => {
     const users = await staticprops();
-    console.log('these are the users=', users)
+    //console.log('these are the users=', users)
     return (
         <>
             {users &&

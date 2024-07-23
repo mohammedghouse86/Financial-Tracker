@@ -13,7 +13,7 @@ const Page = () => {
       try {
         const res = await fetch('/api/auth/session');
         const data = await res.json();
-        console.log('this is data ===>>>>', data)
+        //console.log('this is data ===>>>>', data)
 
         if (!data) {
           router.push('/');
@@ -33,7 +33,7 @@ const Page = () => {
   }
   const newSecc = session.user;
   const imgSrc = session.image ? session.image : session.user.image;
-  console.log('this is image===>>>', newSecc)
+  //console.log('this is image===>>>', newSecc)
   return (
     <>
       {session.user ?

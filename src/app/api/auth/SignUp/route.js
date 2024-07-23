@@ -1,4 +1,4 @@
-import bcrypt from 'bcrypt' // for signup
+import bcrypt from 'bcrypt' // for signup  SIGNUP API
 import jwt from 'jsonwebtoken';
 import User from '../../../models/user';
 import { connectToDB } from '../../../../utils/database';
