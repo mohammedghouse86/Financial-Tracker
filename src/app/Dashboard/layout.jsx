@@ -12,17 +12,21 @@ export default function DashBoardLayout({
   children,
   balanceSheet,
   budget,
-  expenses
+  expenses,
+  samplegetstaticprops,
+  notstaticprops
 }) {
   return (
     <html lang="en">
       <body className={inter.className}>
         {children}
         <div style={{ display: 'flex' }}>
-          <div style={{ display: 'flex', flexDirection: 'column' }}>
-            <div>{budget}</div>
-            <div>{expenses}</div>
-            <div style={{ display: 'flex', flex: 1 }}>{balanceSheet}</div>
+          <div style={{ display: 'flex', flexDirection: 'row', padding:'50px' }}>
+            <div style={{padding:'20px' }}>{budget}</div>
+            <div style={{padding:'20px' }}>{expenses}</div>
+            <div style={{padding:'20px' }}>{balanceSheet}</div>
+            <div style={{padding:'20px' }}>{samplegetstaticprops}</div>
+            <div style={{padding:'20px' }}>{notstaticprops}</div>
           </div>
         </div>
       </body>
