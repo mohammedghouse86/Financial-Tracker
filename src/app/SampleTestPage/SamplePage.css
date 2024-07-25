@@ -1,0 +1,71 @@
+body {
+    margin: 0;
+    padding: 0;
+    background-color: #000; /* Black background */
+  }
+  
+  .form-container {
+    top: 10px;
+    left: 10px;
+    width: 300px;
+    height: 500px;
+    background-color: #111; /* Darker background for contrast */
+    border: 3px solid #0f0; /* Fluorescent green border */
+    padding: 30px;
+    box-sizing: border-box;
+    color: #00f; /* Light blue text color */
+    font-family: Arial, sans-serif;
+  }
+  
+  .form-title {
+    text-align: center;
+    margin-bottom: 20px;
+    font-size: 24px;
+    text-shadow: 0 0 10px #00f; /* Light blue glowing effect */
+  }
+  
+  .form-field {
+    margin-bottom: 15px;
+  }
+  
+  input, select, .display {
+    width: 200px;
+    padding: 8px;
+    border: 1px solid #0f0; /* Fluorescent green border */
+    border-radius: 4px;
+    background-color: #222; /* Dark background for inputs */
+    color: #00f; /* Light blue text color */
+  }
+  
+  input:focus, select:focus {
+    outline: none;
+    border-color: #00f; /* Light blue border on focus */
+    box-shadow: 0 0 10px #00f; /* Light blue glowing effect on focus */
+  }
+  
+  .submit-button {
+    width: 48%;
+    padding: 10px;
+    border: none;
+    background-color: #00f; /* Light blue background */
+    color: #fff; /* White text */
+    font-size: 16px;
+    border-radius: 4px;
+    cursor: pointer;
+  }
+
+  .reset-button {
+    width: 47%;
+    padding: 10px;
+    border: none;
+    background-color: rgb(233, 19, 37); /* Light blue background */
+    color: #ececec; /* White text */
+    font-size: 16px;
+    border-radius: 4px;
+    cursor: pointer;
+  }
+  
+  .submit-button:hover {
+    background-color: #00c; /* Darker blue on hover */
+  }
+  

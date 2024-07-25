@@ -28,20 +28,20 @@ const Signup = () => {
         SetCredential({ ...Credential, [e.target.name]: e.target.value });
     };
 
-    return (<div className="flex items-center justify-center min-h-screen">
+    return (<div className="flex items-center justify-center min-h-screen"> SIGNUP PAGE
         <div className='container' style={{ height: '400px', width: '200px', backgroundColor: 'gray', display: 'flex', justifyContent: 'center', alignItems: 'center', flexDirection: 'column' }}>
             <form style={{ width: '180px', margin:'10px' }} onSubmit={handleSubmit}>
                 <div>Email</div>
-                    <input style={{ width: '180px' }} type="email" className="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" name="email" value={Credential.email} onChange={onChange} />
+                    <input style={{ width: '180px' }} type="email" className="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" name="email" value={Credential.email} onChange={onChange} placeholder="Email" />
 
                     <div>Name</div>
-                    <input style={{ width: '180px' }} type="text" className="form-control" id="exampleInputname1" aria-describedby="nameHelp" name="name" value={Credential.name} onChange={onChange}  />
+                    <input style={{ width: '180px' }} type="text" className="form-control" id="exampleInputname1" aria-describedby="nameHelp" name="name" value={Credential.name} onChange={onChange} placeholder="Name"  />
 
                     <div>Image</div>
-                    <input style={{ width: '180px' }} type="text" className="form-control" id="exampleInputimage1" aria-describedby="imageHelp" name="image" value={Credential.image} onChange={onChange}/>
+                    <input style={{ width: '180px' }} type="text" className="form-control" id="exampleInputimage1" aria-describedby="imageHelp" name="image" value={Credential.image} onChange={onChange} placeholder="Image"/>
   
                     <div>Password</div>
-                    <input style={{ width: '180px' }} type="password" className="form-control" id="Password" onChange={onChange} value={Credential.password} name="password"/>
+                    <input style={{ width: '180px' }} type="password" className="form-control" id="Password" onChange={onChange} value={Credential.password} name="password" placeholder="Password"/>
 
                 <button className='bg-black text-white p-1 rounded-md m-1 text-lg w-40 my-6' type="submit">Submit</button>
             </form>
