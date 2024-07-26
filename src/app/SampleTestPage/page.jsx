@@ -2,6 +2,7 @@
 import React, { useState } from 'react';
 import './SamplePage.css'; // Import your CSS file
 
+
 const SamplePage = () => {
   const [details, setDetails] = useState({
     firstname: "",
@@ -17,10 +18,11 @@ const SamplePage = () => {
     setDetails({
       firstname: data.firstname || "",
       lastname: data.lastname || "",
+      age:data.age||"",
       gender: data.gender || "" // Note: The select field's name is "gender"
     });
 
-    console.log(data);
+    console.log(details);
   };
 
   const handleClear = () => {
@@ -54,7 +56,7 @@ const SamplePage = () => {
             </div>
             <div className="form-field">
               <label htmlFor="options">Gender</label>
-              <select id="options" name="gender">
+              <select id="options" name="gender" >
                 <option value="">Select Gender</option>
                 <option value="Male">Male</option>
                 <option value="Female">Female</option>
@@ -68,6 +70,7 @@ const SamplePage = () => {
 
         {details.firstname && <div>
           <div className="form-container mx-5">
+          <h1 className="form-title">Details</h1>
             <div className="display my-5">{details.firstname}</div>
             <div className="display my-5">{details.lastname}</div>
             <div className="display my-5">{details.age}</div>
