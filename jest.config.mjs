@@ -12,7 +12,8 @@ const config = {
   //testEnvironment: 'jsdom',
   // Add more setup options before each test is run
    setupFilesAfterEnv: ['<rootDir>/jest.setup.js'],
-   testEnvironment:'jest-environment-jsdom' 
+   //testEnvironment:'jest-environment-jsdom' //Ghouse did this
+   testEnvironment:'node' //Ghouse did this
    //testEnvironmentOptions: {
    // customExportConditions: [''], got this from github
   //}

@@ -1,4 +1,6 @@
-import '@testing-library/jest-dom';/*
+import '@testing-library/jest-dom';
+setupFiles: ['<rootDir>/setup-jest.js']
+/*
 import {server} from './src/mocks/server';
 import { afterAll, afterEach, beforeAll } from 'node:test';
 

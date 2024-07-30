@@ -3,6 +3,7 @@ import React, { useEffect, useState } from 'react';
 import { useRouter } from 'next/navigation';
 import Image from 'next/image';
 import Navbar from '../components/Navbar';
+import SampleTestPage from '../SampleTestPage/page'
 
 const Page = () => {
   const [session, setSession] = useState(null);
@@ -47,6 +48,7 @@ const Page = () => {
               alt='display photo'
             />FIRST
           </div>
+          <SampleTestPage/>
         </>)
         :
         (<>
@@ -58,6 +60,7 @@ const Page = () => {
               height={250}
               alt='display photo'
             />SECOND</div>
+            <SampleTestPage/>
         </>)}
     </>
   );
