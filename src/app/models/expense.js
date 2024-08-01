@@ -13,15 +13,23 @@ const ExpenseSchema = new Schema({
     type: String,
     required: true
   },
-  cost: {
+  unit: {
+    type: String,
+    required: true
+  },
+  qty: {
     type: Number,
     required: true
   },
-  cumulativecost: {
+  unitcost: {
     type: Number,
     required: true
-  },});
-
+  },
+  totalcost: {
+    type: Number,
+    required: true
+  }
+});
 const Expense = models.Expense || model("Expense", ExpenseSchema);
 
 export default Expense;

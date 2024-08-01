@@ -77,7 +77,8 @@ const Navbar = () => {
                   </Link>
                   <Link href="/Dashboard" className={`${pageName==='/Dashboard'? 'bg-green-900 rounded-md px-4 py-2 text-sm font-medium text-white':'rounded-md px-4 py-2 text-sm font-medium text-white'}`} aria-current="page">Dashboard
                   </Link>
-                  <Link href="#" className="rounded-md px-3 py-2 text-sm font-medium text-gray-300 hover:bg-gray-700 hover:text-white">Team
+                  <Link href="/ExpenseForm"
+                     className={`${pageName==='/ExpenseForm'? 'bg-green-900 rounded-md px-4 py-2 text-sm font-medium text-white':'rounded-md px-4 py-2 text-sm font-medium text-white'}`}>ExpenseForm
                   </Link>
                   <Link href="#"
                     className="rounded-md px-3 py-2 text-sm font-medium text-gray-300 hover:bg-gray-700 hover:text-white">Projects
