@@ -3,6 +3,7 @@ import Navbar from "../components/Navbar";
 import { uploadexpense } from "../actions/index";
 import React, { useState, useEffect } from "react";
 import "../ExpenseForm/ExpenseForm.css";
+import ExpenseTable from "./ExpenseTable";
 
 const ExpenseForm = () => {
   const [totalcost, setTotalcost] = useState(0);
@@ -38,7 +39,7 @@ const ExpenseForm = () => {
                 id="category"
                 name="category"
                 autoComplete="category-name"
-                className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:max-w-xs sm:text-sm sm:leading-6"
+                className="block w-full rounded-md border-0 py-1.5 text-white shadow-sm ring-1 ring-inset ring-gray-300 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:max-w-xs sm:text-sm sm:leading-6"
               >
                 <option>Groceries</option>
                 <option>Fruits</option>
@@ -64,7 +65,7 @@ const ExpenseForm = () => {
                 name="description"
                 id="description"
                 autoComplete="given-name"
-                className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
+                className="block w-full rounded-md border-0 py-1.5 text-white shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
               />
             </div>
           </div>
@@ -81,7 +82,7 @@ const ExpenseForm = () => {
                 id="unit"
                 name="unit"
                 autoComplete="unit-name"
-                className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:max-w-xs sm:text-sm sm:leading-6"
+                className="block w-full rounded-md border-0 py-1.5 text-white shadow-sm ring-1 ring-inset ring-gray-300 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:max-w-xs sm:text-sm sm:leading-6"
               >
                 <option>Pieces</option>
                 <option>KiloGrams</option>
@@ -104,7 +105,7 @@ const ExpenseForm = () => {
                 name="qty"
                 id="qty"
                 autoComplete="qty"
-                className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
+                className="block w-full rounded-md border-0 py-1.5 text-white shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
               />
             </div>
           </div>
@@ -121,7 +122,7 @@ const ExpenseForm = () => {
                 name="unitcost"
                 id="unitcost"
                 autoComplete="unitcost"
-                className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
+                className="block w-full rounded-md border-0 py-1.5 text-white shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
               />
             </div>
           </div>
@@ -134,6 +135,7 @@ const ExpenseForm = () => {
           </button>
         </form>
       </div>
+      <ExpenseTable/>
     </div>
   );
 };
