@@ -5,7 +5,26 @@ import Link from 'next/link';
 import Logout from '../Logout/page';
 import { useRouter,usePathname, useSearchParams } from 'next/navigation';
 
-const Navbar = ({ session }) => {
+const Navbar = () => {
+  const [session, setSession] = useState("");
+  const [navParam, setNavParam] = useState("");
+  useEffect(() => {
+    const fetchSession = async () => {
+      try {
+        const res = await fetch('/api/auth/session');
+        const data = await res.json();
+        if (data) {
+          setSession(data);
+        }
+      } catch (error) {
+        console.error('Error fetching session:', error);
+      }
+    };
+    fetchSession();
+  }, []);
+
+
+
   const [profileMenu, setProfileMenu] = useState(false);
   const [pageName, setPageName] = useState("");
   const pathname = usePathname()
@@ -16,6 +35,16 @@ const Navbar = ({ session }) => {
       setPageName(url);
       console.log('This is the page name 2nd method =', url);
   }, [pathname]);
+
+  useEffect(() =>{
+    if(session.user){
+      setNavParam(session.user);
+    }
+    else if(!session.user){
+      setNavParam(session);
+    }
+    console.log('this is session===>>>', session)
+  },[session])
 
   return (
     <>
@@ -66,7 +95,7 @@ const Navbar = ({ session }) => {
                   <path strokeLinecap="round" strokeLinejoin="round" d="M14.857 17.082a23.848 23.848 0 005.454-1.31A8.967 8.967 0 0118 9.75v-.7V9A6 6 0 006 9v.75a8.967 8.967 0 01-2.312 6.022c1.733.64 3.56 1.085 5.455 1.31m5.714 0a24.255 24.255 0 01-5.714 0m5.714 0a3 3 0 11-5.714 0" />
                 </svg>
               </button>
-              <div className="rounded-md bg-green-900 px-4 py-2 text-sm font-medium text-white">{session.name}</div>
+              <div className="rounded-md bg-green-900 px-4 py-2 text-sm font-medium text-white">{navParam.name}</div>
 
               {/* Profile dropdown */}
               <div className="relative ml-3">
@@ -75,10 +104,10 @@ const Navbar = ({ session }) => {
                     <span className="absolute -inset-1.5"></span>
                     <span className="sr-only">Open user menu</span>
 
-                    {session && (
+                    {navParam && (
                       <Image
                         className="h-8 w-8 rounded-full"
-                        src={session.image}
+                        src={navParam.image}
                         alt="User Profile"
                         width={32}
                         height={32}

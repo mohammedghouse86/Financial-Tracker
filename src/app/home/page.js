@@ -34,12 +34,12 @@ const Page = () => {
   }
   const newSecc = session.user;
   const imgSrc = session.image ? session.image : session.user.image;
-  console.log('this is image===>>>', newSecc)
+  //console.log('this is image===>>>', newSecc)
   return (
     <>
       {session.user ?
         (<>
-          <Navbar session={newSecc} />
+          <Navbar/>
           <div>THIS IS THE HOME PAGE {session.name} signed in
             <Image
               src={imgSrc}
@@ -52,7 +52,7 @@ const Page = () => {
         </>)
         :
         (<>
-          <Navbar session={session} />
+          <Navbar/>
           <div>THIS IS THE HOME PAGE {session.name} signed in
             <Image
               src={imgSrc}
