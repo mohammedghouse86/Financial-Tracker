@@ -2,12 +2,13 @@ import Expense from '../../../models/expense'; // API FOR UPLOADING THE EXPENSES
 import { connectToDB } from '../../../../utils/database';
 
 export const POST = async (req, res) => {
-    const { category, description, unit, qty, unitcost, totalcost } = await req.json();
+    const { category, description, unit, qty, unitcost, totalcost, date } = await req.json();
 
     try {
         await connectToDB();
         console.log('Connected to DB');
         const newUser = await Expense.create({
+            date,
             category,
             description,
             unit,

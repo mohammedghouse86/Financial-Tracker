@@ -1,12 +1,13 @@
-"use client"; //THIS IS THE FORM WHERE YOU ENTER THE EXPENSES.
-import Navbar from "../components/Navbar";
+// components/Modal.js
+import React from 'react';
+import { useState } from 'react';
+import { useRouter } from 'next/router';
 import { uploadexpense } from "../actions/index";
-import React, { useState, useEffect } from "react";
 import "../ExpenseForm/ExpenseForm.css";
-import ExpenseTable from "./ExpenseTable";
 
-const ExpenseForm = () => {
-  const [totalcost, setTotalcost] = useState(0);
+const Modal = ({ isOpen, onClose, children, item }) => {
+  if (!isOpen) return null;
+  console.log("this is the expense to be edited =", item);
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
@@ -19,14 +20,22 @@ const ExpenseForm = () => {
       console.error(error);
     }
   };
-
   return (
-    <div className="main">
-      <Navbar />
-      <div className="main">THIS IS WHERE YOU FIND THE EXPENSE UPLOAD FORM</div>
-      <div className="card">
-        <h2 className="card-title">EXPENSES</h2>
-        <form onSubmit={handleSubmit}>
+    <>
+      <div className="fixed inset-0 bg-gray-500 bg-opacity-75 transition-opacity" aria-hidden="true" ></div>
+      <div className="fixed inset-0 flex items-center justify-center p-4">
+        <div className="bg-white rounded-lg shadow-lg max-w-sm w-full" style={{backgroundColor:'black'}}>
+          <div className="flex justify-between items-center p-4 border-b" >
+            <h3 className="text-lg font-semibold" >Modal Title</h3>
+            <button onClick={onClose} className="text-gray-500 hover:text-gray-700">
+              <svg className="h-6 w-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M6 18L18 6M6 6l12 12"></path>
+              </svg>
+            </button>
+          </div>
+          <div className="p-4" style={{backgroundColor:'black'}}>
+            {/*This is the form in the MODAL*/}
+            <form onSubmit={handleSubmit} >
           <div className="sm:col-span-3">
             <label
               htmlFor="date"
@@ -40,7 +49,7 @@ const ExpenseForm = () => {
                 id="date"
                 autoComplete="date"
                 className="block w-full rounded-md border-0 py-1.5 text-white shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
-              />
+                style={{backgroundColor:'gray'}}/>
             </div>
           </div>
           <div className="sm:col-span-3">
@@ -56,7 +65,7 @@ const ExpenseForm = () => {
                 name="category"
                 autoComplete="category-name"
                 className="block w-full rounded-md border-0 py-1.5 text-white shadow-sm ring-1 ring-inset ring-gray-300 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:max-w-xs sm:text-sm sm:leading-6"
-              >
+                style={{backgroundColor:'gray'}}>
                 <option>Groceries</option>
                 <option>Fruits</option>
                 <option>Vegetables</option>
@@ -82,7 +91,7 @@ const ExpenseForm = () => {
                 id="description"
                 autoComplete="given-name"
                 className="block w-full rounded-md border-0 py-1.5 text-white shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
-              />
+                style={{backgroundColor:'gray'}}/>
             </div>
           </div>
 
@@ -99,7 +108,7 @@ const ExpenseForm = () => {
                 name="unit"
                 autoComplete="unit-name"
                 className="block w-full rounded-md border-0 py-1.5 text-white shadow-sm ring-1 ring-inset ring-gray-300 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:max-w-xs sm:text-sm sm:leading-6"
-              >
+                style={{backgroundColor:'gray'}}>
                 <option>Pieces</option>
                 <option>KiloGrams</option>
                 <option>Grams</option>
@@ -122,7 +131,7 @@ const ExpenseForm = () => {
                 id="qty"
                 autoComplete="qty"
                 className="block w-full rounded-md border-0 py-1.5 text-white shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
-              />
+                style={{backgroundColor:'gray'}}/>
             </div>
           </div>
           <div className="sm:col-span-3">
@@ -139,7 +148,7 @@ const ExpenseForm = () => {
                 id="unitcost"
                 autoComplete="unitcost"
                 className="block w-full rounded-md border-0 py-1.5 text-white shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
-              />
+                style={{backgroundColor:'gray'}}/>
             </div>
           </div>
 
@@ -150,10 +159,18 @@ const ExpenseForm = () => {
             Save
           </button>
         </form>
+
+
+
+
+          </div>
+          <div className="flex justify-end p-4 border-t">
+            <button onClick={onClose} className="bg-blue-500 text-white px-4 py-2 rounded-md hover:bg-blue-600">Close</button>
+          </div>
+        </div>
       </div>
-      <ExpenseTable/>
-    </div>
+    </>
   );
 };
 
-export default ExpenseForm;
+export default Modal;

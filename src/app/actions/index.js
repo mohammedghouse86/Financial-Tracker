@@ -35,7 +35,51 @@ export async function doCredentialLogin(formData) {
 
 export async function uploadexpense(formData) {
   try {
-    //console.log('running uploadexpense')
+    if(formData.get("date")!==""){
+    const inputDate = formData.get("date")
+    const date = new Date(inputDate);
+    const isoString = date.toISOString(); 
+
+    console.log('running uploadexpense', 
+        'date = ',isoString,
+        'category= ',formData.get("category"),
+        'description= ',formData.get("description"),
+        'unit= ',formData.get("unit"),
+        'qty= ',formData.get("qty"),
+        'unitcost= ',formData.get("unitcost"),
+    )
+  
+  const total = formData.get("unitcost")*formData.get("qty")
+    const response = await fetch(
+      `http://localhost:3000/api/auth/ExpenseEntryAPI`,
+      {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          date:isoString,
+          category: formData.get("category"),
+          description: formData.get("description"),
+          unit: formData.get("unit"),
+          qty: formData.get("qty"),
+          unitcost: formData.get("unitcost"),
+          totalcost: total,
+        }),
+      }
+    );
+    const json = await response.json();
+    console.log(json);
+  }
+    else{
+      console.log('running uploadexpense', 
+        'category= ',formData.get("category"),
+        'description= ',formData.get("description"),
+        'unit= ',formData.get("unit"),
+        'qty= ',formData.get("qty"),
+        'unitcost= ',formData.get("unitcost"),
+    )
+
     const total = formData.get("unitcost")*formData.get("qty")
     const response = await fetch(
       `http://localhost:3000/api/auth/ExpenseEntryAPI`,
@@ -56,6 +100,8 @@ export async function uploadexpense(formData) {
     );
     const json = await response.json();
     console.log(json);
+    }
+    
   } catch (error) {
     console.error(error);
   }
@@ -79,5 +125,28 @@ export async function getexpense() {
     return json;
   } catch (error) {
     console.error(error);
+  }
+}
+
+export async function deleteExpense(id) {
+  try {
+    console.log(id);
+    const response = await fetch(
+      `http://localhost:3000/api/auth/DeleteExpenseAPI`,
+      {
+        method: "DELETE",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({id:id})
+      }
+    );
+    const json = await response.json();
+    console.log(response);
+    return json;
+  } 
+  catch (error) {
+    //console.error(error);
+    return { success: false, message: error.message };
   }
 }
