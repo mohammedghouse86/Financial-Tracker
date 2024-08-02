@@ -150,3 +150,33 @@ export async function deleteExpense(id) {
     return { success: false, message: error.message };
   }
 }
+
+export async function editExpense(formdata, id) {
+  try {
+    console.log(id);
+    const response = await fetch(
+      `http://localhost:3000/api/auth/EditExpenseAPI`,
+      {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          id:id,
+          category: formdata.get("category"),
+          description: formdata.get("description"),
+          unit: formdata.get("unit"),
+          qty: formdata.get("qty"),
+          unitcost: formdata.get("unitcost")
+        }),
+      }
+    );
+    const json = await response.json();
+    console.log(response);
+    return json;
+  } 
+  catch (error) {
+    //console.error(error);
+    return { success: false, message: error.message };
+  }
+}

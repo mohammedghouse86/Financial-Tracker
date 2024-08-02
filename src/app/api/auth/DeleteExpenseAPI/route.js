@@ -30,4 +30,4 @@ export async function DELETE(req) {
 }
 
 
-//http://localhost:3000/api/auth/GetExpensesAPI
+//http://localhost:3000/api/auth/DeleteExpenseAPI

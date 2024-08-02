@@ -2,17 +2,25 @@
 import React from 'react';
 import { useState } from 'react';
 import { useRouter } from 'next/router';
-import { uploadexpense } from "../actions/index";
+import { editExpense } from "../actions/index";
 import "../ExpenseForm/ExpenseForm.css";
 
 const Modal = ({ isOpen, onClose, children, item }) => {
   if (!isOpen) return null;
-  console.log("this is the expense to be edited =", item);
+  //console.log("this is the expense to be edited =", item);
+  const [placeholders,setPlaceholders] = useState({
+                                                date:new Date(item.date).toISOString().split('T')[0],
+                                                category:item.category,
+                                                description:item.description,
+                                                unit:item.unit,
+                                                qty:item.qty,
+                                                unitcost:item.unitcost,
+  })
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
       const formdata = new FormData(e.currentTarget);
-      const response = uploadexpense(formdata);
+      const response = editExpense(formdata,item._id);
       console.log('this is response =', response)
       //if (!!response.error) {
       //}
@@ -20,13 +28,23 @@ const Modal = ({ isOpen, onClose, children, item }) => {
       console.error(error);
     }
   };
+
+// Handle input changes
+const handelChange = (e) => {
+    const { name, value } = e.target;
+    setPlaceholders((prevState) => ({
+      ...prevState,
+      [name]: value,
+    }));
+  };
+
   return (
     <>
       <div className="fixed inset-0 bg-gray-500 bg-opacity-75 transition-opacity" aria-hidden="true" ></div>
       <div className="fixed inset-0 flex items-center justify-center p-4">
         <div className="bg-white rounded-lg shadow-lg max-w-sm w-full" style={{backgroundColor:'black'}}>
           <div className="flex justify-between items-center p-4 border-b" >
-            <h3 className="text-lg font-semibold" >Modal Title</h3>
+            <h3 className="text-lg font-semibold" >Edit Expense</h3>
             <button onClick={onClose} className="text-gray-500 hover:text-gray-700">
               <svg className="h-6 w-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M6 18L18 6M6 6l12 12"></path>
@@ -44,6 +62,8 @@ const Modal = ({ isOpen, onClose, children, item }) => {
             </label>
             <div className="mt-2">
             <input
+                value={placeholders.date}
+                onChange={handelChange}
                 type="date"
                 name="date"
                 id="date"
@@ -61,6 +81,8 @@ const Modal = ({ isOpen, onClose, children, item }) => {
             </label>
             <div className="mt-2">
               <select
+              onChange={handelChange}
+              value={placeholders.category}
                 id="category"
                 name="category"
                 autoComplete="category-name"
@@ -86,6 +108,8 @@ const Modal = ({ isOpen, onClose, children, item }) => {
             </label>
             <div className="mt-2">
               <input
+              onChange={handelChange}
+              value={placeholders.description}
                 type="text"
                 name="description"
                 id="description"
@@ -104,6 +128,8 @@ const Modal = ({ isOpen, onClose, children, item }) => {
             </label>
             <div className="mt-2">
               <select
+              onChange={handelChange}
+              value={placeholders.unit}
                 id="unit"
                 name="unit"
                 autoComplete="unit-name"
@@ -126,6 +152,8 @@ const Modal = ({ isOpen, onClose, children, item }) => {
             </label>
             <div className="mt-2">
               <input
+              onChange={handelChange}
+              value={placeholders.qty}
                 type="number"
                 name="qty"
                 id="qty"
@@ -143,6 +171,8 @@ const Modal = ({ isOpen, onClose, children, item }) => {
             </label>
             <div className="mt-2">
               <input
+              onChange={handelChange}
+              value={placeholders.unitcost}
                 type="number"
                 name="unitcost"
                 id="unitcost"
